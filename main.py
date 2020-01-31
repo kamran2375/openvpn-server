@@ -7,8 +7,13 @@ import time
 import base64
 
 API_URL = "https://api.ovpn.pw/csv"
+_in = input('Enter server 1 or 2: ')
+if _in == '2':
+    API_URL = "https://www.vpngate.net/api/iphone/"
 
 data = requests.get(API_URL).text
+if _in == '2':
+    data = data[14:]
 data = csv.DictReader(data.split('\n'), delimiter=',')
 data_json = []
 
